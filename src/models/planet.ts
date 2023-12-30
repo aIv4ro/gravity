@@ -4,7 +4,6 @@ import { type V2 } from './v2'
 export class Planet {
   private readonly _id = crypto.randomUUID()
   private readonly _trail: V2[] = []
-  private readonly _trailLength = 100
 
   constructor (
     private readonly _name: string,
@@ -12,8 +11,25 @@ export class Planet {
     private _velocity: V2,
     private readonly _radius: number,
     private readonly _mass: number,
-    private readonly _texture: string
+    private readonly _texture: string,
+    private readonly _trailLength = 100
   ) {}
+
+  clone ({
+    trailLength
+  }: {
+    trailLength?: () => number
+  } = {}) {
+    return new Planet(
+      this.name,
+      this.position.clone(),
+      this.velocity.clone(),
+      this.radius,
+      this.mass,
+      this.texture,
+      trailLength?.() ?? this.trailLength
+    )
+  }
 
   get id () {
     return this._id
@@ -53,6 +69,10 @@ export class Planet {
 
   get trail () {
     return this._trail
+  }
+
+  get trailLength () {
+    return this._trailLength
   }
 
   interact (planets: Planet[]) {

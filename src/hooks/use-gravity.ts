@@ -18,7 +18,8 @@ export function useGravity ({
 
   useRequestFrame(onFrame)
 
-  useGravityCanvas({ canvasRef, planets })
+  const settings = { paused }
+  useGravityCanvas({ canvasRef, planets, settings })
 
   return {
     paused,
