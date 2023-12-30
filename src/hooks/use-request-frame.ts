@@ -14,7 +14,6 @@ export function useRequestFrame (
     requestRef.current = requestAnimationFrame(animate)
     return () => {
       if (requestRef.current != null) {
-        console.log('cancelAnimationFrame')
         cancelAnimationFrame(requestRef.current)
       }
     }

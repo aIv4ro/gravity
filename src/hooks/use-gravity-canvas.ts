@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useOnWindowResize } from './use-window-resize'
 import { type Planet } from '../models/planet'
 
@@ -22,11 +22,7 @@ export function useGravityCanvas ({
     setCtx(canvasRef.current?.getContext('2d'))
   }, [canvasRef.current?.getContext('2d')])
 
-  const draw = useCallback(({
-    planets
-  }: {
-    planets: Planet[]
-  }) => {
+  useEffect(() => {
     if (ctx == null) return
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     planets.forEach(planet => {
@@ -50,9 +46,5 @@ export function useGravityCanvas ({
         ctx.closePath()
       }
     })
-  }, [ctx])
-
-  useEffect(() => {
-    draw({ planets })
-  }, [draw, planets])
+  }, [ctx, planets])
 }

@@ -1,12 +1,14 @@
 import { useRef } from 'react'
 import { useGravity } from './hooks/use-gravity'
+import { Menu } from './components/Menu'
 
 function App () {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  useGravity({ canvasRef })
+  const { paused, setPaused } = useGravity({ canvasRef })
 
   return (
     <>
+      <Menu paused={paused} setPaused={setPaused} />
       <canvas
         ref={canvasRef}
         className='bg-black'
