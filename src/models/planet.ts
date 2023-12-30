@@ -7,6 +7,7 @@ export class Planet {
   private readonly _trailLength = 100
 
   constructor (
+    private readonly _name: string,
     private _position: V2,
     private _velocity: V2,
     private readonly _radius: number,
@@ -16,6 +17,10 @@ export class Planet {
 
   get id () {
     return this._id
+  }
+
+  get name () {
+    return this._name
   }
 
   get position () {

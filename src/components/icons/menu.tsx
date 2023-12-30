@@ -1,10 +1,12 @@
 import { type IconProps } from './props'
 
-export function PlayIcon (props: IconProps) {
+export function MenuIcon (props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       strokeWidth="2"
       stroke="currentColor"
@@ -13,7 +15,9 @@ export function PlayIcon (props: IconProps) {
       strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" strokeWidth="0" fill="currentColor" />
+      <path d="M4 6l16 0" />
+      <path d="M4 12l16 0" />
+      <path d="M4 18l16 0" />
     </svg>
   )
 }

@@ -4,7 +4,7 @@ import { planets as initialPlanets } from '../constants/simulation'
 export function usePlanets () {
   const [planets, setPlanets] = useState(initialPlanets)
 
-  function update () {
+  function calcInteractions () {
     planets.forEach(planet => {
       planet.interact(planets)
     })
@@ -16,6 +16,6 @@ export function usePlanets () {
 
   return {
     planets,
-    update
+    calcInteractions
   }
 }

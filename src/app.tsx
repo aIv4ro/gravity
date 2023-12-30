@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useGravity } from './hooks/use-gravity'
 import { Menu } from './components/menu'
+import { planets } from './constants/simulation'
 
 function App () {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -8,7 +9,11 @@ function App () {
 
   return (
     <>
-      <Menu paused={paused} setPaused={setPaused} />
+      <Menu
+        paused={paused}
+        setPaused={setPaused}
+        planets={planets}
+      />
       <canvas
         ref={canvasRef}
         className='bg-black'
