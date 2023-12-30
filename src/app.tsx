@@ -1,7 +1,16 @@
+import { useRef } from 'react'
+import { useGravity } from './hooks/use-gravity'
+
 function App () {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  useGravity({ canvasRef })
+
   return (
     <>
-      <h1>Gravity</h1>
+      <canvas
+        ref={canvasRef}
+        className='bg-black'
+      />
     </>
   )
 }
