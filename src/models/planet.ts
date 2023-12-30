@@ -2,6 +2,9 @@ import { G } from '../constants/simulation'
 import { type V2 } from './v2'
 
 export class Planet {
+  private readonly _trail: V2[] = []
+  private readonly _trailLength = 100
+
   constructor (
     private _position: V2,
     private _velocity: V2,
@@ -38,6 +41,10 @@ export class Planet {
     return this._texture
   }
 
+  get trail () {
+    return this._trail
+  }
+
   interact (planets: Planet[]) {
     planets.forEach(planet => {
       if (planet === this) return
@@ -49,7 +56,15 @@ export class Planet {
     })
   }
 
+  private updateTrail () {
+    this.trail.push(this.position.clone())
+    if (this.trail.length > this._trailLength) {
+      this.trail.shift()
+    }
+  }
+
   update () {
+    this.updateTrail()
     this.position = this.position.add(this.velocity)
   }
 }

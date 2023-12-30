@@ -33,6 +33,16 @@ export function useGravity ({
       ctx.fillStyle = planet.texture
       ctx.fill()
       ctx.closePath()
+      if (planet.trail.length > 1) {
+        ctx.beginPath()
+        ctx.moveTo(planet.trail[0].x, planet.trail[0].y)
+        for (let i = 1; i < planet.trail.length; i++) {
+          ctx.lineTo(planet.trail[i].x, planet.trail[i].y)
+        }
+        ctx.strokeStyle = planet.texture
+        ctx.stroke()
+        ctx.closePath()
+      }
     })
   }, [ctx])
 
