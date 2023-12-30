@@ -30,7 +30,7 @@ export function useGravity ({
       const y = planet.position.y - radius
       ctx.beginPath()
       ctx.roundRect(x, y, diameter, diameter, radius)
-      ctx.fillStyle = 'red'
+      ctx.fillStyle = planet.texture
       ctx.fill()
       ctx.closePath()
     })

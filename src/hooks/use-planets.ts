@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { planets } from '../models/planet'
+import { planets } from '../constants/simulation'
 
 export function usePlanets () {
   const planetsRef = useRef(planets)
