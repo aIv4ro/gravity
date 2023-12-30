@@ -9,7 +9,7 @@ export function useGravity ({
   canvasRef: React.RefObject<HTMLCanvasElement>
 }) {
   const { planets, calcInteractions } = usePlanets()
-  const [paused, setPaused] = useState(false)
+  const [paused, setPaused] = useState(true)
 
   const onFrame = useCallback(() => {
     if (paused) return
