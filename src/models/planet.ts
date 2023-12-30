@@ -2,6 +2,7 @@ import { G } from '../constants/simulation'
 import { type V2 } from './v2'
 
 export class Planet {
+  private readonly _id = crypto.randomUUID()
   private readonly _trail: V2[] = []
   private readonly _trailLength = 100
 
@@ -12,6 +13,10 @@ export class Planet {
     private readonly _mass: number,
     private readonly _texture: string
   ) {}
+
+  get id () {
+    return this._id
+  }
 
   get position () {
     return this._position

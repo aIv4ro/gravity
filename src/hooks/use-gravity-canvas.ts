@@ -3,9 +3,11 @@ import { useOnWindowResize } from './use-window-resize'
 import { type Planet } from '../models/planet'
 
 export function useGravityCanvas ({
-  canvasRef
+  canvasRef,
+  planets
 }: {
   canvasRef: React.RefObject<HTMLCanvasElement>
+  planets: Planet[]
 }) {
   const [ctx, setCtx] = useState(canvasRef.current?.getContext('2d'))
 
@@ -50,7 +52,7 @@ export function useGravityCanvas ({
     })
   }, [ctx])
 
-  return {
-    draw
-  }
+  useEffect(() => {
+    draw({ planets })
+  }, [draw, planets])
 }

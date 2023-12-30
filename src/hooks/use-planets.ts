@@ -1,20 +1,21 @@
-import { useRef } from 'react'
-import { planets } from '../constants/simulation'
+import { useState } from 'react'
+import { planets as initialPlanets } from '../constants/simulation'
 
 export function usePlanets () {
-  const planetsRef = useRef(planets)
+  const [planets, setPlanets] = useState(initialPlanets)
 
   function update () {
-    planetsRef.current.forEach(planet => {
-      planet.interact(planetsRef.current)
+    planets.forEach(planet => {
+      planet.interact(planets)
     })
-    planetsRef.current.forEach(planet => {
+    planets.forEach(planet => {
       planet.update()
     })
+    setPlanets([...planets])
   }
 
   return {
-    planetsRef,
+    planets,
     update
   }
 }

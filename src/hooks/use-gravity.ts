@@ -8,13 +8,12 @@ export function useGravity ({
 }: {
   canvasRef: React.RefObject<HTMLCanvasElement>
 }) {
-  const { draw } = useGravityCanvas({ canvasRef })
-  const { planetsRef, update: updatePlanets } = usePlanets()
+  const { planets, update: updatePlanets } = usePlanets()
 
   const onFrame = useCallback(() => {
     updatePlanets()
-    draw({ planets: planetsRef.current })
-  }, [draw])
+  }, [])
 
   useRequestFrame(onFrame)
+  useGravityCanvas({ canvasRef, planets })
 }
