@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useGravity } from './hooks/use-gravity'
-import { Menu } from './components/Menu'
+import { Menu } from './components/menu'
 
 function App () {
   const canvasRef = useRef<HTMLCanvasElement>(null)
