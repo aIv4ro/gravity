@@ -9,7 +9,7 @@ export function useGravity ({
 }: {
   canvasRef: React.RefObject<HTMLCanvasElement>
 }) {
-  const { planets, calcInteractions } = usePlanets()
+  const { planets, calcInteractions, updatePlanet } = usePlanets()
   const { value: paused, toggle: togglePause } = useBoolean(true)
   const { value: showMenu, toggle: toggleShowMenu } = useBoolean()
 
@@ -28,6 +28,7 @@ export function useGravity ({
     togglePause,
     showMenu,
     toggleShowMenu,
-    planets
+    planets,
+    updatePlanet
   }
 }

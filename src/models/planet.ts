@@ -10,7 +10,7 @@ export class Planet {
     private _position: V2,
     private _velocity: V2,
     private readonly _radius: number,
-    private readonly _mass: number,
+    private _mass: number,
     private readonly _texture: string,
     private readonly _trailLength = 100
   ) {}
@@ -55,12 +55,16 @@ export class Planet {
     this._velocity = velocity
   }
 
-  get radius () {
-    return this._radius
-  }
-
   get mass () {
     return this._mass
+  }
+
+  set mass (mass: number) {
+    this._mass = mass
+  }
+
+  get radius () {
+    return this._radius
   }
 
   get texture () {

@@ -15,8 +15,17 @@ export class V2 {
     validateNumber(_y, 'y')
   }
 
-  clone () {
-    return new V2(this._x, this._y)
+  clone ({
+    x,
+    y
+  }: {
+    x?: () => number
+    y?: () => number
+  } = {}) {
+    return new V2(
+      x?.() ?? this._x,
+      y?.() ?? this._y
+    )
   }
 
   get x () {
