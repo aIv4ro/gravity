@@ -1,9 +1,10 @@
-import { type Planet as PlanetType } from '../../models/planet'
 import { MenuHeader } from './menu-header'
 import { useGravityContext } from '../../hooks/gravity-context'
+import { MenuActions } from './menu-actions'
+import { MenuPlanets } from './menu-planets'
 
 export function Menu () {
-  const { paused, togglePause, showMenu, planets } = useGravityContext()
+  const { showMenu } = useGravityContext()
 
   return (
     <aside
@@ -14,49 +15,10 @@ export function Menu () {
       >
         <MenuHeader />
         <div className={`${showMenu ? 'flex flex-col gap-2' : 'hidden'}`}>
-          <h2 className='text-2xl'>Actions</h2>
-          <label
-            className="flex items-center gap-2"
-          >
-            <input
-              type="checkbox"
-              checked={paused}
-              onChange={togglePause}
-            />
-            Paused
-          </label>
-          <h2 className='text-2xl'>
-            Planets
-          </h2>
-          <ul className='flex flex-col gap-2'>
-            {planets.map(planet => (
-              <li
-                key={planet.id}
-              >
-                <Planet
-                  planet={planet}
-                />
-              </li>
-            ))}
-          </ul>
+          <MenuActions />
+          <MenuPlanets />
         </div>
       </div>
     </aside>
-  )
-}
-
-function Planet ({
-  planet
-}: {
-  planet: PlanetType
-}) {
-  return (
-    <article
-      className='flex p-2 bg-gray-800 rounded gap-2'
-    >
-      <h3 className='text-xl'>
-        Name: {planet.name}
-      </h3>
-    </article>
   )
 }
