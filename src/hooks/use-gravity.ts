@@ -1,7 +1,8 @@
 import { useRequestFrame } from './use-request-frame'
 import { useGravityCanvas } from './use-gravity-canvas'
 import { usePlanets } from './use-planets'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
+import { useBoolean } from './use-boolean'
 
 export function useGravity ({
   canvasRef
@@ -9,7 +10,8 @@ export function useGravity ({
   canvasRef: React.RefObject<HTMLCanvasElement>
 }) {
   const { planets, calcInteractions } = usePlanets()
-  const [paused, setPaused] = useState(true)
+  const { value: paused, toggle: togglePause } = useBoolean(true)
+  const { value: showMenu, toggle: toggleShowMenu } = useBoolean()
 
   const onFrame = useCallback(() => {
     if (paused) return
@@ -23,7 +25,9 @@ export function useGravity ({
 
   return {
     paused,
-    setPaused,
+    togglePause,
+    showMenu,
+    toggleShowMenu,
     planets
   }
 }

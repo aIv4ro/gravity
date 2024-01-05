@@ -1,15 +1,9 @@
-import { useState, type Dispatch } from 'react'
-import { MenuIcon } from './icons/menu'
-import { type Planet as PlanetType } from '../models/planet'
+import { type Planet as PlanetType } from '../../models/planet'
+import { MenuHeader } from './menu-header'
+import { useGravityContext } from '../../hooks/gravity-context'
 
-export function Menu ({
-  paused, setPaused, planets
-}: {
-  paused: boolean
-  setPaused: Dispatch<React.SetStateAction<boolean>>
-  planets: PlanetType[]
-}) {
-  const [showMenu, setShowMenu] = useState(false)
+export function Menu () {
+  const { paused, togglePause, showMenu, planets } = useGravityContext()
 
   return (
     <aside
@@ -18,11 +12,7 @@ export function Menu ({
       <div
         className='grid p-2 bg-gray-900 shadow-lg gap-3'
       >
-        <header className='flex items-center gap-10'>
-          <button className='flex items-center gap-2 transition-colors bg-gray-800 hover:bg-gray-700 rounded px-2 py-2' onClick={() => { setShowMenu(prev => !prev) }}>
-            <MenuIcon className={'transition-transform ' + (showMenu ? 'rotate-90' : '')} />
-          </button>
-        </header>
+        <MenuHeader />
         <div className={`${showMenu ? 'flex flex-col gap-2' : 'hidden'}`}>
           <h2 className='text-2xl'>Actions</h2>
           <label
@@ -31,7 +21,7 @@ export function Menu ({
             <input
               type="checkbox"
               checked={paused}
-              onChange={(evt) => { setPaused(evt.target.checked) }}
+              onChange={togglePause}
             />
             Paused
           </label>
